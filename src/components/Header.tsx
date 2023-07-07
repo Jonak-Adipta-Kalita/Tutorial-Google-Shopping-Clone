@@ -10,8 +10,6 @@ import {
 } from "@tremor/react";
 import Avatar from "react-avatar";
 
-type Props = {};
-
 const SORT_BY_MAP = {
   r: "Default",
   rv: "By Review",
@@ -21,7 +19,7 @@ const SORT_BY_MAP = {
 
 const PRICE_MAP = [100, 250, 500, 750, 900, 1000];
 
-const Header = (props: Props) => {
+const Header = () => {
   return (
     <header>
       <Link href="/">
