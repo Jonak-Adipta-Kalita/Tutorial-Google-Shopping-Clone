@@ -8,7 +8,7 @@ import {
   Select,
   SelectItem,
 } from "@tremor/react";
-import Avatar from "react-avatar";
+import Avatar from "./Avatar";
 
 const SORT_BY_MAP = {
   r: "Default",
@@ -77,9 +77,7 @@ const Header = () => {
           </div>
         </form>
       </div>
-      <div className="hidden lg:flex flex-1 justify-end">
-        <Avatar name="Jonak Adipta Kalita" round size="50" />
-      </div>
+      <Avatar />
     </header>
   );
 };
