@@ -8,6 +8,7 @@ import {
   Select,
   SelectItem,
 } from "@tremor/react";
+import Avatar from "react-avatar";
 
 type Props = {};
 
@@ -77,6 +78,9 @@ const Header = (props: Props) => {
             </SearchSelect>
           </div>
         </form>
+      </div>
+      <div className="hidden lg:flex flex-1 justify-end">
+        <Avatar name="Jonak Adipta Kalita" round size="50" />
       </div>
     </header>
   );
