@@ -2,7 +2,7 @@ import { PageResult, SearchParams } from "@/typings";
 import { NextResponse } from "next/server";
 
 export const POST = async (request: Request) => {
-  const { searchTerm, pages, ...params } = await request.json();
+  const { searchTerm, ...params } = await request.json();
 
   const searchParams: SearchParams = params;
   if (!searchParams.pages) {
@@ -31,7 +31,7 @@ export const POST = async (request: Request) => {
       source: "google_shopping_search",
       domain: "com",
       query: searchTerm,
-      pages: Number(pages) || 1,
+      pages: Number(searchParams.pages) || 1,
       parse: true,
       context: filters,
     }),
