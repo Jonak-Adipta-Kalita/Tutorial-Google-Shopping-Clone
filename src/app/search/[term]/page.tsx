@@ -10,6 +10,8 @@ type Props = {
   };
 };
 
+export const revalidate = 300;
+
 const SearchPage = async ({ params: { term }, searchParams }: Props) => {
   if (!term) {
     redirect("/");
