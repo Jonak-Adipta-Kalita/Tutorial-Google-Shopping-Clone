@@ -26,7 +26,7 @@ export const POST = async (request: Request) => {
   ).toString("base64");
 
   const response = await fetch("https://realtime.oxylabs.io/v1/queries", {
-    method: "POST",
+    method: "post",
     body: JSON.stringify({
       source: "google_shopping_search",
       domain: "com",
