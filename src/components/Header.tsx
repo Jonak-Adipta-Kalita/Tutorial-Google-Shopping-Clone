@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
@@ -8,7 +10,8 @@ import {
   Select,
   SelectItem,
 } from "@tremor/react";
-import Avatar from "./Avatar";
+import Avatar from "react-avatar";
+import { useState } from "react";
 
 const SORT_BY_MAP = {
   r: "Default",
@@ -20,6 +23,11 @@ const SORT_BY_MAP = {
 const PRICE_MAP = [100, 250, 500, 750, 900, 1000];
 
 const Header = () => {
+  const [page, setPage] = useState("");
+  const [sortBy, setSortBy] = useState("r");
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+
   return (
     <header className="flex flex-col items-center md:flex-row md:items-start md:space-x-6 px-2 pt-10 pb-5 md:p-10 md:pb-5">
       <Link href="/">
@@ -46,28 +54,44 @@ const Header = () => {
             <SearchButton />
           </div>
           <div className="grid grid-cols-2 gap-2 p-4 md:grid-cols-4 max-w-lg md:max-w-none mx-auto justify-center">
-            <SearchSelect className="min-w-4" placeholder="# of pages">
+            <SearchSelect
+              className="min-w-4"
+              placeholder="# of pages"
+              onValueChange={setPage}
+            >
               {[...Array(100)].map((_, i) => (
                 <SearchSelectItem key={i} value={(i + 1).toString()}>
                   {(i + 1).toString()} Pages
                 </SearchSelectItem>
               ))}
             </SearchSelect>
-            <Select className="min-w-4" placeholder="Sort by">
+            <Select
+              className="min-w-4"
+              placeholder="Sort by"
+              onValueChange={setSortBy}
+            >
               {Object.entries(SORT_BY_MAP).map(([key, value]) => (
                 <SelectItem key={key} value={key}>
                   {value}
                 </SelectItem>
               ))}
             </Select>
-            <SearchSelect className="min-w-4" placeholder="Min Price">
+            <SearchSelect
+              className="min-w-4"
+              placeholder="Min Price"
+              onValueChange={setMinPrice}
+            >
               {PRICE_MAP.map((value, i) => (
                 <SearchSelectItem key={i} value={value.toString()}>
                   {i === 0 ? "No Minimum" : `$${value.toString()}`}
                 </SearchSelectItem>
               ))}
             </SearchSelect>
-            <SearchSelect className="min-w-4" placeholder="Max Price">
+            <SearchSelect
+              className="min-w-4"
+              placeholder="Max Price"
+              onValueChange={setMaxPrice}
+            >
               {PRICE_MAP.map((value, i) => (
                 <SearchSelectItem key={i} value={value.toString()}>
                   {i === 0 ? "No Max" : `$${value.toString()}`}
@@ -77,7 +101,9 @@ const Header = () => {
           </div>
         </form>
       </div>
-      <Avatar />
+      <div className="hidden lg:flex flex-1 justify-end">
+        <Avatar name="Jonak Adipta Kalita" round size="50" />
+      </div>
     </header>
   );
 };
