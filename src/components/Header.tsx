@@ -12,6 +12,7 @@ import {
 } from "@tremor/react";
 import Avatar from "react-avatar";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const SORT_BY_MAP = {
   r: "Default",
@@ -23,10 +24,12 @@ const SORT_BY_MAP = {
 const PRICE_MAP = [100, 250, 500, 750, 900, 1000];
 
 const Header = () => {
-  const [page, setPage] = useState("");
+  const [pages, setPages] = useState("");
   const [sortBy, setSortBy] = useState("r");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
+
+  const router = useRouter();
 
   return (
     <header className="flex flex-col items-center md:flex-row md:items-start md:space-x-6 px-2 pt-10 pb-5 md:p-10 md:pb-5">
@@ -40,7 +43,20 @@ const Header = () => {
         />
       </Link>
       <div className="w-full md:max-w-2xl">
-        <form>
+        <form
+          action={(formData) => {
+            const searchTerm = formData.get("searchTerm");
+            if (!searchTerm) return;
+
+            const params = new URLSearchParams();
+            if (pages) params.set("pages", pages);
+            if (sortBy) params.set("sort_by", sortBy);
+            if (minPrice) params.set("min_price", minPrice);
+            if (maxPrice) params.set("max_price", maxPrice);
+
+            router.push(`/search/${searchTerm}?${params.toString()}`);
+          }}
+        >
           <div className="flex items-center gap-2 w-full px-4">
             <div className="flex items-center space-x-2 bg-white shadow-xl rounded-full border-0 px-6 py-4 flex-1">
               <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" />
@@ -57,7 +73,7 @@ const Header = () => {
             <SearchSelect
               className="min-w-4"
               placeholder="# of pages"
-              onValueChange={setPage}
+              onValueChange={setPages}
             >
               {[...Array(100)].map((_, i) => (
                 <SearchSelectItem key={i} value={(i + 1).toString()}>
