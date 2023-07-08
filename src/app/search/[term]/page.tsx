@@ -10,23 +10,15 @@ type Props = {
   };
 };
 
-const USE_DUMMY_DATA = true;
-
 const SearchPage = async ({ params: { term }, searchParams }: Props) => {
   if (!term) {
     redirect("/");
   }
 
-  let response: any;
-
-  if (USE_DUMMY_DATA) {
-    response = await fetch(getFetchUrl("dummyData.json"));
-  } else {
-    response = await fetch(getFetchUrl("api/search"), {
-      method: "POST",
-      body: JSON.stringify({ searchTerm: term, ...searchParams }),
-    });
-  }
+  const response = await fetch(getFetchUrl("api/search"), {
+    method: "POST",
+    body: JSON.stringify({ searchTerm: term, ...searchParams }),
+  });
 
   const results = (await response.json()) as PageResult[];
 

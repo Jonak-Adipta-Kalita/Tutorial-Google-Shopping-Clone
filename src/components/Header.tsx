@@ -21,7 +21,7 @@ const SORT_BY_MAP = {
   pd: "By Price (high to low)",
 };
 
-const PRICE_MAP = [100, 250, 500, 750, 900, 1000];
+const PRICE_MAP = ["100", "250", "500", "750", "900", "1000"];
 
 const Header = () => {
   const [pages, setPages] = useState("");
