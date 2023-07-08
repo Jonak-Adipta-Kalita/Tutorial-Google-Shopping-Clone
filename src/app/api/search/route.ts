@@ -5,7 +5,7 @@ export const POST = async (request: Request) => {
   const { searchTerm, ...params } = await request.json();
 
   const searchParams: SearchParams = params;
-  if (!searchParams.pages) {
+  if (!searchTerm) {
     return NextResponse.next(
       new Response("Missing search term ", { status: 400 })
     );
