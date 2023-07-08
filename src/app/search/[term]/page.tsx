@@ -1,6 +1,17 @@
-type Props = {};
+import { redirect } from "next/navigation";
 
-const SearchPage = ({}: Props) => {
+type Props = {
+  searchParams: any;
+  params: {
+    term: string;
+  };
+};
+
+const SearchPage = ({ params: { term }, searchParams }: Props) => {
+  if (!term) {
+    redirect("/");
+  }
+
   return <div></div>;
 };
 
