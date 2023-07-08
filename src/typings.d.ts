@@ -34,17 +34,17 @@ export type Results = {
   };
 };
 
-type Filter = {
+export type Filter = {
   name: string;
   values: Value[];
 };
 
-type Value = {
+export type Value = {
   url: string;
   value: string;
 };
 
-type Organic = {
+export type Organic = {
   pos: number;
   url: string;
   type: string;
