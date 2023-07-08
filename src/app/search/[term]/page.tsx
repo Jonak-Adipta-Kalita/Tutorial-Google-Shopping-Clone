@@ -1,3 +1,4 @@
+import ResultsList from "@/components/ResultsList";
 import { getFetchUrl } from "@/lib/getFetchUrl";
 import { PageResult, SearchParams } from "@/typings";
 import { redirect } from "next/navigation";
@@ -19,9 +20,13 @@ const SearchPage = async ({ params: { term }, searchParams }: Props) => {
     body: JSON.stringify({ searchTerm: term, ...searchParams }),
   });
 
-  const data = (await response.json()) as PageResult[];
+  const results = (await response.json()) as PageResult[];
 
-  return <div></div>;
+  return (
+    <div>
+      <ResultsList results={results} term={term} />
+    </div>
+  );
 };
 
 export default SearchPage;
