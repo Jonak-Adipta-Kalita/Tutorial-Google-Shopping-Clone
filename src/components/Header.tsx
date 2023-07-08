@@ -21,7 +21,7 @@ const PRICE_MAP = [100, 250, 500, 750, 900, 1000];
 
 const Header = () => {
   return (
-    <header>
+    <header className="flex flex-col items-center md:flex-row md:items-start md:space-x-6 px-2 pt-10 pb-5 md:p-10 md:pb-5">
       <Link href="/">
         <Image
           src="https://links.papareact.com/208"
@@ -45,7 +45,7 @@ const Header = () => {
             </div>
             <SearchButton />
           </div>
-          <div>
+          <div className="grid grid-cols-2 gap-2 p-4 md:grid-cols-4 max-w-lg md:max-w-none mx-auto justify-center">
             <SearchSelect className="min-w-4" placeholder="# of pages">
               {[...Array(100)].map((_, i) => (
                 <SearchSelectItem key={i} value={(i + 1).toString()}>
@@ -60,14 +60,14 @@ const Header = () => {
                 </SelectItem>
               ))}
             </Select>
-            <SearchSelect className="min-w-4" placeholder="Min Price...">
+            <SearchSelect className="min-w-4" placeholder="Min Price">
               {PRICE_MAP.map((value, i) => (
                 <SearchSelectItem key={i} value={value.toString()}>
                   {i === 0 ? "No Minimum" : `$${value.toString()}`}
                 </SearchSelectItem>
               ))}
             </SearchSelect>
-            <SearchSelect className="min-w-4" placeholder="Max Price...">
+            <SearchSelect className="min-w-4" placeholder="Max Price">
               {PRICE_MAP.map((value, i) => (
                 <SearchSelectItem key={i} value={value.toString()}>
                   {i === 0 ? "No Max" : `$${value.toString()}`}
