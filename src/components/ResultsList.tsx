@@ -8,14 +8,12 @@ type Props = { results: PageResult[]; term: string };
 const ResultsList = ({ results, term }: Props) => {
   return (
     <div className="flex md:px-5">
-      <div>
+      <div className="w-36 md:w-64">
         {results.map((pageResult, i) => (
           <div key={i} className="space-y-2">
             {pageResult.content.results.filters?.map((filter, i) => (
-              <div key={i}>
-                <p className="font-bold rounded-r-lg md:rounded-lg p-5">
-                  {filter.name}
-                </p>
+              <div key={i} className="border rounded-r-lg md:rounded-lg p-5">
+                <p className="font-bold">{filter.name}</p>
                 <div className="flex flex-col">
                   {filter.values.map((value, i) => (
                     <Link
