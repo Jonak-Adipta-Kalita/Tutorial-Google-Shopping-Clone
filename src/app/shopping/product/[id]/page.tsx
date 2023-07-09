@@ -1,3 +1,4 @@
+import ProductPageImage from "@/components/ProductPageImage";
 import { getFetchUrl } from "@/lib/getFetchUrl";
 import { ProductData } from "@/typings";
 import { StarIcon } from "@heroicons/react/24/solid";
@@ -39,31 +40,31 @@ const ProductPage = async ({ params: { id } }: Props) => {
       <section className="flex flex-col lg:flex-row mt-5 md:mt-0">
         <div className="md:p-10 md:pl-0 mx-auto">
           <div className="flex gap-4">
-            <img
-              className="h-80 w-80 rounded-md border p-5 object-contain"
+            <ProductPageImage
+              className="h-80 w-80 rounded-md border p-5 object-contain cursor-pointer"
               src={productData.content.images?.full_size[0]}
-              alt="image-1"
+              altNumber={1}
             />
             <div className="flex flex-col justify-between">
               {productData.content.images.full_size
                 ?.slice(1, 3)
                 .map((image, i) => (
-                  <img
+                  <ProductPageImage
                     src={image}
-                    alt={`image-${i + 2}`}
+                    altNumber={i + 2}
                     key={i}
-                    className="w-[9.5rem] h-[9.5rem] object-contain border rounded-md"
+                    className="w-[9.5rem] h-[9.5rem] object-contain border rounded-md cursor-pointer"
                   />
                 ))}
             </div>
           </div>
           <div className="flex soace-x-6 overflow-x-scroll py-2 md:w-[30rem]">
             {productData.content.images.full_size.slice(3).map((image, i) => (
-              <img
+              <ProductPageImage
                 src={image}
-                alt={`image-${i + 5}`}
+                altNumber={i + 5}
                 key={i}
-                className="w-20 h-20 object-contain"
+                className="w-20 h-20 object-contain cursor-pointer"
               />
             ))}
           </div>
@@ -114,7 +115,10 @@ const ProductPage = async ({ params: { id } }: Props) => {
           </div>
         </div>
       </section>
-      <section></section>
+      <section>
+        <hr className="my-10" />
+        <h3 className="font-bold text-2xl">Reviews</h3>
+      </section>
     </div>
   );
 };
