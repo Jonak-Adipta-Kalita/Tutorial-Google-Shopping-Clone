@@ -158,6 +158,25 @@ const ProductPage = async ({ params: { id } }: Props) => {
           </div>
         )}
       </section>
+      {productData.content.specifications && (
+        <section>
+          <hr className="my-10" />
+          <h3 className="font-bold text-2xl">Specifications</h3>
+          <div className="flex flex-wrap space-x-5">
+            {productData.content.specifications?.map((spec, i) => (
+              <div key={i}>
+                <h4 className="font-bold my-2 text-xl">{spec.section_title}</h4>
+                {spec.items?.map((item, i) => (
+                  <div className="text-sm" key={i}>
+                    <p className="font-bold">{item.title}</p>
+                    <p>{item.value}</p>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   );
 };
