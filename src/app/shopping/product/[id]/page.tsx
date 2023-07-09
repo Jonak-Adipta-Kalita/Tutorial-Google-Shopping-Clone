@@ -92,7 +92,7 @@ const ProductPage = async ({ params: { id } }: Props) => {
                     </p>
                   )}
                 </div>
-                <p className="text-sm text-gray-600 ml5">
+                <p className="text-sm text-gray-600">
                   {productData.content.pricing.online[0]?.details}
                 </p>
               </>
