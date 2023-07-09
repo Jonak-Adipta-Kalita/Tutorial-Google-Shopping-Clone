@@ -96,11 +96,25 @@ const ProductPage = async ({ params: { id } }: Props) => {
                 </p>
               </>
             )}
-            <hr className="my-3" />
+            <hr className="my-5" />
             <p className="text-justify">{productData.content.description}</p>
+            {productData.content.highlights && (
+              <div className="mt-5 space-y-2">
+                <h3 className="font-bold text-2xl">Product Highlights</h3>
+                <hr />
+                <ul className="space-y-2 ml-5">
+                  {productData.content.highlights?.map((highlight, i) => (
+                    <li className="list-disc" key={i}>
+                      {highlight}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         </div>
       </section>
+      <section></section>
     </div>
   );
 };
