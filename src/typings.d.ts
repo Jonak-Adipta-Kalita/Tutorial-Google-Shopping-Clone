@@ -58,3 +58,64 @@ export type Organic = {
   price_str: string;
   pos_overall: number;
 };
+
+export type ProductData = {
+  content: ProductContent;
+  created_at: string;
+  updated_at: string;
+  page: number;
+  url: string;
+  job_id: string;
+  status_code: number;
+  parser_type: string;
+};
+
+export type ProductContent = {
+  url: string;
+  title: string;
+  description: string;
+  images: {
+    full_size: string[];
+    thumbnail: string[];
+  };
+  highlights?: string[];
+  reviews: {
+    rating: number;
+    top_review: {
+      text: string;
+      title: string;
+      rating: number;
+      author: string;
+      source: string;
+    };
+    rating_stars: number;
+    reviews_count: number;
+    reviews_by_stars: {
+      [starRating]: {
+        url: string;
+        review_count: number;
+      };
+    };
+  };
+  pricing: {
+    online: [
+      {
+        price: number;
+        currency: string;
+        seller: string;
+        details: string;
+        condition: string;
+        price_tax: number;
+        price_total: number;
+        seller_link: string;
+        price_shopping: number;
+      }
+    ];
+  };
+  specifications: [
+    {
+      items: [{ title: string; value: string }];
+      section_title: string;
+    }
+  ];
+};
